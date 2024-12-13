@@ -1,12 +1,5 @@
 #pragma once
 
-#include "Types.h"
-#include "CoreGlobal.h"
-#include "CoreTLS.h"
-#include "CoreMacro.h"
-#include "Lock.h"
-#include "Container.h"
-
 #include <iostream>
 #include <algorithm>
 #include <sstream>
@@ -22,5 +15,14 @@
 #include <mswsock.h>
 #include <ws2tcpip.h>
 #pragma comment(lib, "ws2_32.lib")
+
+#include "Types.h"
+#include "CoreGlobal.h"
+#include "CoreTLS.h"
+#include "CoreMacro.h"
+#include "Lock.h"
+#include "Container.h"
+#include "Memory.h"
+
 
 using namespace std;

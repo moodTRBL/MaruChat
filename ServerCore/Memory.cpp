@@ -5,21 +5,21 @@
 Memory::Memory() {
 	int32 size = 0;
 	int32 index = 0;
-	for (size = 32; size <= 1024; size += 32) {
+	for (size = 32; size < 1024; size += 32) {
 		MemoryPool* pool = new MemoryPool(size);
 		_pools.push_back(pool);
 		while (index <= size) {
 			_poolTable[index++] = pool;
 		}
 	}
-	for (; size <= 2048; size += 128) {
+	for (; size < 2048; size += 128) {
 		MemoryPool* pool = new MemoryPool(size);
 		_pools.push_back(pool);
 		while (index <= size) {
 			_poolTable[index++] = pool;
 		}
 	}
-	for (; size <= 4096; size += 256) {
+	for (; size <= 4098; size += 256) {
 		MemoryPool* pool = new MemoryPool(size);
 		_pools.push_back(pool);
 		while (index <= size) {
@@ -29,6 +29,11 @@ Memory::Memory() {
 }
 
 Memory::~Memory() {
+	for (MemoryPool* pool : _pools) {
+		delete pool;
+	}
+	_pools.clear();
+
 }
 
 void* Memory::Allocate(int32 size) {
