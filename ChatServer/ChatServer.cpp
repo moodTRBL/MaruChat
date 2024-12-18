@@ -8,12 +8,19 @@
 #include "Listener.h"
 #include "Service.h"
 #include "Session.h"
+#include "GameSession.h"
 
-class GameSession : public Session {
+class GameSession2 : public Session {
 public:
+	~GameSession2() {
+		cout << "delete client sesion" << endl;
+	}
+
 	virtual int32 OnRecv(BYTE* buffer, int32 len) override {
 		cout << "on recv len : " << len << endl;
-		Send(buffer, len);
+		SendBufferRef sendBuffer = MakeShared<SendBuffer>(4096);
+		sendBuffer->CopyData(buffer, len);
+		Send(sendBuffer);
 		return len;
 	}
 

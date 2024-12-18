@@ -26,6 +26,11 @@ public:
 	ConnectEvent() : IocpEvent(EventType::CONNECT) {}
 };
 
+class DisconnectEvent : public IocpEvent {
+public:
+	DisconnectEvent() : IocpEvent(EventType::DISCONNECT) {}
+};
+
 class AcceptEvent : public IocpEvent {
 public:
 	AcceptEvent() : IocpEvent(EventType::ACCEPT) {}
@@ -42,5 +47,5 @@ public:
 class SendEvent : public IocpEvent {
 public:
 	SendEvent() : IocpEvent(EventType::SEND) {}
-	vector<BYTE> buffer;
+	kvector<SendBufferRef> sendBuffers;
 };

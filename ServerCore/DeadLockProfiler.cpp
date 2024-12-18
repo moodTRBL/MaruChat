@@ -15,8 +15,8 @@ void DeadLockProfiler::PushLock(const char* name) {
 		lockId = findIt->second;
 	}
 
-	if (_lockStack.empty() == false) {
-		const int32 preId = _lockStack.top();
+	if (LLockStack.empty() == false) {
+		const int32 preId = LLockStack.top();
 		if (preId != lockId) {
 			set<int32>& history = _lockHistory[preId];
 			if (history.find(lockId) == history.end()) {
@@ -25,15 +25,15 @@ void DeadLockProfiler::PushLock(const char* name) {
 			}
 		}
 	}
-	_lockStack.push(lockId);
+	LLockStack.push(lockId);
 }
 
 void DeadLockProfiler::PopLock(const char* name) {
 	LockGuard guard(_lock);
-	if (_lockStack.empty()) {
+	if (LLockStack.empty()) {
 		CRASH("Poplock ม฿บน")
 	}
-	_lockStack.pop();
+	LLockStack.pop();
 }
 
 void DeadLockProfiler::CheckCycle() {

@@ -66,13 +66,11 @@ bool SocketUtils::SetLinger(SOCKET socket, uint16 onoff, uint16 linger)
 	return SetSocketOpt(socket, SOL_SOCKET, SO_LINGER, option);
 }
 
-bool SocketUtils::SetReuseAddress(SOCKET socket, bool flag)
-{
+bool SocketUtils::SetReuseAddress(SOCKET socket, bool flag) {
 	return SetSocketOpt(socket, SOL_SOCKET, SO_REUSEADDR, flag);
 }
 
-bool SocketUtils::SetRecvBufferSize(SOCKET socket, int32 size)
-{
+bool SocketUtils::SetRecvBufferSize(SOCKET socket, int32 size) {
 	return SetSocketOpt(socket, SOL_SOCKET, SO_RCVBUF, size);
 }
 
